@@ -8,6 +8,7 @@
 	<groupId>com.shang.wit</groupId>
 	<artifactId>wit-parent</artifactId>
 	<version>1.0.0</version>
+	<packaging>pom</packaging>
 
 
 </project>
