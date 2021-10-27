@@ -14,7 +14,7 @@ import java.util.Properties;
 	 private static Properties props = new Properties();
 	 static {
 		 try {
-			 props.load(BaseEnumConstants.class.getClassLoader().getResourceAsStream("props/enum/enum.properties"));
+			 props.load(BaseEnumConstants.class.getClassLoader().getResourceAsStream("props/enum.properties"));
 		 } catch (Exception e){
 			 e.printStackTrace();
 		 }
