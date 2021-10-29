@@ -41,22 +41,22 @@ public class DataCodeCategory extends BaseEntity {
 
 	/**
 	 *根据视图对象获得实体对象
-	 * @param entity
+	 * @param vo
 	 * @return
 	 */
-	public static DataCodeCategoryVO getVOFromEntity(DataCodeCategory entity){
-		DataCodeCategoryVO vo = new DataCodeCategoryVO();
+	public static DataCodeCategory getEntityFromVO(DataCodeCategoryVO vo){
+		DataCodeCategory entity = new DataCodeCategory();
 		//将视图切换为实体
-		if(entity != null){
-			BeanUtils.copyProperties(entity,vo);
+		if(vo != null){
+			BeanUtils.copyProperties(vo,entity);
 			//将继承的属性设置进去
-			vo.setStatus(entity.getStatus());
-			vo.setCreateUser(entity.getCreateUser());
-			vo.setCreateTime(entity.getCreateTime());
-			vo.setUpdateUser(entity.getUpdateUser());
-			vo.setUpdateTime(entity.getUpdateTime());
+			entity.setStatus(vo.getStatus());
+			entity.setCreateUser(vo.getCreateUser());
+			entity.setCreateTime(vo.getCreateTime());
+			entity.setUpdateUser(vo.getUpdateUser());
+			entity.setUpdateTime(vo.getUpdateTime());
 
 		}
-		return vo;
+		return entity;
 	}
 }
