@@ -61,4 +61,94 @@ public class DataCodeServiceImpl implements DataCodeService {
 		pageVO.setTotalPage(pageInfo.getPages());
 		return pageVO;
 	}
+
+	/**
+	 * 根据对象查询列表
+	 * @param queryVO
+	 * @return
+	 * @throws Exception
+	 */
+	@Override
+	public List<DataCodeVO> getList(DataCodeVO queryVO) throws Exception {
+		//将查询视图切换为实体
+		DataCode query = DataCode.getEntityFromVO(queryVO);
+		//进行列表查询
+		List<DataCode> entityList = dao.findListByQuery(query);
+		//将数据进行切换
+		List<DataCodeVO> voList = new ArrayList<DataCodeVO>();
+		if (entityList != null && !entityList.isEmpty()){
+			for (DataCode entity:entityList){
+				DataCodeVO vo = DataCodeVO.getVOFromEntity(entity);
+				voList.add(vo);
+			}
+		}
+		return voList;
+	}
+
+	/**
+	 * 根据编码查询视图对象
+	 * @param code
+	 * @return
+	 * @throws Exception
+	 */
+	@Override
+	public DataCodeVO getCode(String code) throws Exception {
+		DataCode query = new DataCode();
+		query.setCode(code);
+		List<DataCode> list = dao.findListByQuery(query);
+		if ((list != null && !list.isEmpty())){
+			return DataCodeVO.getVOFromEntity(list.get(0));
+		}
+		return null;
+	}
+
+	/**
+	 * 保存对象
+	 * @param vo
+	 * @return
+	 * @throws Exception
+	 */
+	@Override
+	public boolean save(DataCodeVO vo) throws Exception {
+		//将视图切换未实体
+		DataCode entity = DataCode.getEntityFromVO(vo);
+		entity.setId(idGenerator.createId());
+		if (dao.save(entity)>0){
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * 修改对象
+	 * @param vo
+	 * @return
+	 * @throws Exception
+	 */
+	@Override
+	public boolean update(DataCodeVO vo) throws Exception {
+		//将视图切换未实体
+		DataCode entity = DataCode.getEntityFromVO(vo);
+		if (dao.update(entity)>0){
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * 根据主键查询对象
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	@Override
+	public DataCodeVO getId(String id) throws Exception {
+		DataCode query = new DataCode();
+		query.setId(id);
+		List<DataCode> list = dao.findListByQuery(query);
+		if ((list != null && !list.isEmpty())){
+			return DataCodeVO.getVOFromEntity(list.get(0));
+		}
+		return null;
+	}
 }

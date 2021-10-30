@@ -16,10 +16,10 @@
 		sys_data_code_category dcc
 		<where>
 			<trim suffixOverrides="and">
-				<if test=" id!=null and id!='' ">si.id=#{id} and</if>
-				<if test=" name!=null and name!='' ">si.name like concat ('%',#{name},'%') and</if>
-				<if test=" code!=null and code!='' ">si.code=#{code} and</if>
-				<if test=" status!=null and status!='' ">si.status=#{status} and</if>
+				<if test=" id!=null and id!='' ">dcc.id=#{id} and</if>
+				<if test=" name!=null and name!='' ">dcc.name like concat ('%',#{name},'%') and</if>
+				<if test=" code!=null and code!='' ">dcc.code=#{code} and</if>
+				<if test=" status!=null and status!='' ">dcc.status=#{status} and</if>
 			</trim>
 		</where>
 	</select>
